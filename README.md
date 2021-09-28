@@ -1,6 +1,7 @@
-# apic-gwscript  
+# API Connect Gateway Script Examples
   
-### Sample code to insert an item to response body:  
+### Sample code 1
+Sample code to insert an item to response body:  
 ```
 //get the runtime API context
 var json = apim.getvariable('message');
@@ -21,6 +22,7 @@ message: pre-built context variable provides access to the current message in th
 custom: context variables created during the API assembly with unique names and used in subsequent actions, such as GatewayScript.  
 Each context variable has additional attributes such as body, headers, etc ... that provide additional runtime context.  
 ```    
+### Sample code 2
 Inject an HTTP response header in the same GatewayScript policy. Replace the existing code with the following:  
 ```  
 //get the runtime API context
@@ -43,6 +45,7 @@ xslt: transforms xml documents using XSLT stylesheets
 xml-to-json and json-to-xml: auto-generate XML and JSON payloads dynamically
 Once the message is transformed, you could use a Validate action to verify the message.
 ```
+### Sample code 3
 Sample code of an operation calls out to the Google Geocode API to obtain location information about the provided zip code, then utilize a simple gatewayscript to modify the response and provide a formatted Google Maps link.  
 Set response object variable to google_geocode_response.  
 ```
