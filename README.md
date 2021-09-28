@@ -43,3 +43,20 @@ xslt: transforms xml documents using XSLT stylesheets
 xml-to-json and json-to-xml: auto-generate XML and JSON payloads dynamically
 Once the message is transformed, you could use a Validate action to verify the message.
 ```
+Sample code of an operation calls out to the Google Geocode API to obtain location information about the provided zip code, then utilize a simple gatewayscript to modify the response and provide a formatted Google Maps link.  
+Set response object variable to google_geocode_response.  
+```
+// Save the Google Geocode response body to variable
+var mapsApiRsp = apim.getvariable('google_geocode_response.body');
+
+// Get location attributes from geocode response body 
+var location = mapsApiRsp.results[0].geometry.location;
+
+// Set up the response data object, concat the latitude and longitude  
+var rspObj = {
+  "google_maps_link": "https://www.google.com/maps?q=" + location.lat + "," + location.lng  
+};
+
+// Save the output  	
+apim.setvariable('message.body', rspObj);
+```
